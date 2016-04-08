@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="mustache.min.js"></script>
 	<style type="text/css">
-		#topworkplaceswrapper { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 12pt; width: 300px; padding: 15px; }
+		#topworkplaceswrapper { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 12pt; width: 100%; }
 		#topworkplaceswrapper .intro { font-family: "Georgia", serif; font-size: 13px; line-height: 22px; }
 		#topworkplaceswrapper .tablerowlargeheader {color: #F0F0F0; background-color: rgb(41,125,193); }
 		#topworkplaceswrapper .tablerowlarge {background-color: rgb(191,216,236); }
@@ -36,7 +36,7 @@
 			{{#companies}}
 				<tr class="tablerowlarge">
 					<td>{{rank}}</td>
-					<td><a href="{{website}}">{{companyName}}</a></td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
 				</tr>
 			{{/companies}}
 		</table>
@@ -50,7 +50,7 @@
 			{{#companies}}
 				<tr class="tablerowmed">
 					<td>{{rank}}</td>
-					<td><a href="{{website}}">{{companyName}}</a></td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
 				</tr>
 			{{/companies}}
 		</table>
@@ -64,7 +64,7 @@
 			{{#companies}}
 				<tr class="tablerowsmall">
 					<td>{{rank}}</td>
-					<td><a href="{{website}}">{{companyName}}</a></td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
 				</tr>
 			{{/companies}}
 		</table>
@@ -76,7 +76,7 @@
 			</tr>
 			{{#companies}}
 				<tr class="tablerowachieve">
-					<td><a href="{{website}}">{{companyName}}</a></td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
 				</tr>
 			{{/companies}}
 		</table>
@@ -86,7 +86,7 @@
 	<div id="topworkplaceswrapper">
 		<img class="img_logo" src="top_workplaces_logo_2016.png" class="img-responsive" alt="Responsive image" align="center">
 		<p class="intro">The Top Workplaces rankings are divided into large (more than 500 local employees), midsize (150-499 local employees) and small (fewer than 150 local employees) categories, as well as Workplace Achievers, companies that meet national standards as a Top Workplace but did not score high enough to make the top 100. Click a company name to see more information.</p>
-		<p class="intro">Find companies: <a href="#large-companies">Large</a> &bull; <a href="#midsize-companies">Midsize</a> &bull; <a href="#small-companies">Small</a> &bull; <a href="#workplace-achievers">Achievers</a></p>
+		<!-- <p class="intro">Find companies: <a href="#large-companies">Large</a> &bull; <a href="#midsize-companies">Midsize</a> &bull; <a href="#small-companies">Small</a> &bull; <a href="#workplace-achievers">Achievers</a></p> -->
 		<div id="large-companies"></div>
 		<div id="midsize-companies"></div>
 		<div id="small-companies"></div>
