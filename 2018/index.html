@@ -1,0 +1,909 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title>Top Workplaces 2017 | The Denver Post</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="mustache.min.js"></script>
+	<style type="text/css">
+		#topworkplaceswrapper { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 12pt; width: 100%; }
+		#topworkplaceswrapper .intro { font-family: "Georgia", serif; font-size: 13px; line-height: 22px; }
+		#topworkplaceswrapper .tablerowlargeheader {color: #F0F0F0; background-color: rgb(41,125,193); }
+		#topworkplaceswrapper .tablerowlarge {background-color: rgb(191,216,236); }
+		#topworkplaceswrapper .tablerowmedheader { color: #F0F0F0; background-color: rgb(58,136,0); }	 
+		#topworkplaceswrapper .tablerowmed { background-color: rgb(196,219,178); }	 
+		#topworkplaceswrapper .tablerowsmallheader { color: #F0F0F0; background-color: rgb(105,77,61); }	 
+		#topworkplaceswrapper .tablerowsmall { background-color: rgb(210,202,197); }	
+		#topworkplaceswrapper .tablerowachieveheader { color: #F0F0F0; background-color: rgb(185, 178, 128); }	 
+		#topworkplaceswrapper .tablerowachieve { background-color: rgb(255, 248, 198); }
+		#topworkplaceswrapper td { height: 12px; }	 
+		#topworkplaceswrapper a:link { text-decoration: none; border-bottom: 1px gray dotted; }	 
+		#topworkplaceswrapper a { color: black; }	 
+		#topworkplaceswrapper table {border-collapse: separate; border-spacing: 2px; border-color: gray; margin-bottom: 15px; width: 100%;}	 
+			 
+		#topworkplaceswrapper h2 { font-weight: bolder; color: #700000; }	 
+		#topworkplaceswrapper img { width: 100%; }	
+	</style>
+</head>  
+<body>
+	<!-- MUSTACHE TEMPLATES -->
+	<script type="text/html" id="largeCompanies">
+		<table class="table table-condensed table-responsive">
+			<tr class="tablerowlargeheader">
+				<td>Rank</td>
+				<td>Large Companies</td>
+			</tr>
+			{{#companies}}
+				<tr class="tablerowlarge">
+					<td>{{rank}}</td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
+				</tr>
+			{{/companies}}
+		</table>
+	</script>
+	<script type="text/html" id="midsizeCompanies">
+		<table class="table table-condensed table-responsive">
+			<tr class="tablerowmedheader">
+				<td>Rank</td>
+				<td>Midsize Companies</td>
+			</tr>
+			{{#companies}}
+				<tr class="tablerowmed">
+					<td>{{rank}}</td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
+				</tr>
+			{{/companies}}
+		</table>
+	</script>
+	<script type="text/html" id="smallCompanies">
+		<table class="table table-condensed table-responsive">
+			<tr class="tablerowsmallheader">
+				<td>Rank</td>
+				<td>Small Companies</td>
+			</tr>
+			{{#companies}}
+				<tr class="tablerowsmall">
+					<td>{{rank}}</td>
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
+				</tr>
+			{{/companies}}
+		</table>
+	</script>
+	<script type="text/html" id="workplaceAchievers">
+		<table class="table table-condensed table-responsive">
+			<tr class="tablerowachieveheader">
+				<td>Wokrplace Achievers</td>
+			</tr>
+			{{#companies}}
+				<tr class="tablerowachieve">
+					<td><a href="{{website}}" target="_parent">{{companyName}}</a></td>
+				</tr>
+			{{/companies}}
+		</table>
+	</script>
+
+	<!-- INTRO AND TABLES -->
+	<div id="topworkplaceswrapper">
+		<img class="img_logo" src="top-workplaces-logo-2017-trans.png" class="img-responsive" alt="Responsive image" align="center">
+		<p class="intro">The Top Workplaces rankings are divided into large (more than 500 local employees), midsize (150-499 local employees) and small (fewer than 150 local employees) categories, as well as Workplace Achievers, companies that meet national standards as a Top Workplace but did not score high enough to make the top 125. Click a company name to see more information.</p>
+		<p><a href="http://www.denverpost.com/2017/04/07/about-the-top-workplaces-survey/" target="_top">The Top Workplaces survey</a> reflects the responses of more than 48,000 Colorado workers.</p>
+		<!-- <p class="intro">Find companies: <a href="#large-companies">Large</a> &bull; <a href="#midsize-companies">Midsize</a> &bull; <a href="#small-companies">Small</a> &bull; <a href="#workplace-achievers">Achievers</a></p> -->
+		<div id="large-companies"></div>
+		<div id="midsize-companies"></div>
+		<div id="small-companies"></div>
+		<div id="workplace-achievers"></div>
+	</div>
+
+	<script>
+	// LARGE COMPANIES JSON
+	(function() {
+		var largeCompanies = {
+			"companies": [
+			  {
+    "rank": 1,
+    "companyName": "Breckenridge Grand Vacations",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/breckenridge-grand-vacat"
+  },
+  {
+    "rank": 2,
+    "companyName": "Edward Jones",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/edward-jones"
+  },
+  {
+    "rank": 3,
+    "companyName": "USAA",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/usaa"
+  },
+  {
+    "rank": 4,
+    "companyName": "Pinnacol Assurance",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/pinnacol-assurance"
+  },
+  {
+    "rank": 5,
+    "companyName": "Progressive Insurance",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/the-progressive-group-of-insuran"
+  },
+  {
+    "rank": 6,
+    "companyName": "T-Mobile US",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/t-mobile-usa_1"
+  },
+  {
+    "rank": 7,
+    "companyName": "Charles Schwab & Co.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/charles-schwab_4"
+  },
+  {
+    "rank": 8,
+    "companyName": "Sturgeon Electric Company, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/sturgeon-electric-co"
+  },
+  {
+    "rank": 9,
+    "companyName": "Saunders Construction, Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/saunders-construction-i"
+  },
+  {
+    "rank": 10,
+    "companyName": "Jefferson Center For Mental Health",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/jefferson-center-for-men"
+  },
+  {
+    "rank": 11,
+    "companyName": "Accenture Limited",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/accenture_5"
+  },
+  {
+    "rank": 12,
+    "companyName": "FirstBank",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/firstbank"
+  },
+  {
+    "rank": 13,
+    "companyName": "Alliance Data",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/alliance-data-retail-ser"
+  },
+  {
+    "rank": 14,
+    "companyName": "Craig Hospital",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/craig-hospital"
+  },
+  {
+    "rank": 15,
+    "companyName": "OppenheimerFunds",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/oppenheimer-funds"
+  },
+  {
+    "rank": 16,
+    "companyName": "Bright Horizons Family Solutions",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/bright-horizons-family-solutions"
+  },
+  {
+    "rank": 17,
+    "companyName": "Epsilon",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/epsilon_1"
+  },
+  {
+    "rank": 18,
+    "companyName": "Rose Medical Center",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/rose-medical-center"
+  },
+  {
+    "rank": 19,
+    "companyName": "Mental Health Center of Denver",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/mental-health-center-of"
+  },
+  {
+    "rank": 20,
+    "companyName": "DigitalGlobe",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/digitalglobe-inc"
+  },
+  {
+    "rank": 21,
+    "companyName": "U.S. Bank",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/u-s-bank_1"
+  },
+  {
+    "rank": 22,
+    "companyName": "HomeAdvisor",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/homeadvisor-inc"
+  },
+  {
+    "rank": 23,
+    "companyName": "Aims Community College",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/aims-community-college"
+  },
+  {
+    "rank": 24,
+    "companyName": "Clinica Campesina/Family Health Services",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/clinica-family-healt"
+  },
+  {
+    "rank": 25,
+    "companyName": "UCHealth",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/university-of-colorado-h"
+  },
+  {
+    "rank": 26,
+    "companyName": "Enterprise Holdings",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/enterprise-rent-a-car"
+  },
+  {
+    "rank": 27,
+    "companyName": "DSST Public Schools",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/dsst-public-schools"
+  },
+  {
+    "rank": 28,
+    "companyName": "City of Arvada",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/city-of-arvada"
+  },
+  {
+    "rank": 29,
+    "companyName": "CACI International Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/caci-international-inc"
+  },
+  {
+    "rank": 30,
+    "companyName": "Hunter Douglas Window Fashions, Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/hunter-douglas-window-fa"
+  }
+			]
+	    },
+
+	    //get a reference to our HTML template
+	    template = $('#largeCompanies').html(),
+
+	    //tell Mustache.js to iterate through the JSON and insert the data into the HTML template
+	    output = Mustache.render(template, largeCompanies);
+
+	  	//append the HTML template to the DOM
+	  	$('#large-companies').append(output);
+	})();
+
+	// MEDIUM COMPANIES JSON
+	(function() {
+		var midsizeCompanies = {
+			"companies": [
+				{
+    "rank": 1,
+    "companyName": "Madison & Company Properties",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/madison-company-proper"
+  },
+  {
+    "rank": 2,
+    "companyName": "Gusto",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/gusto"
+  },
+  {
+    "rank": 3,
+    "companyName": "PorchLight Real Estate Group",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/porchlight-real-estate-g"
+  },
+  {
+    "rank": 4,
+    "companyName": "8z Real Estate",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/8z-real-estate"
+  },
+  {
+    "rank": 5,
+    "companyName": "Weifield Group Contracting",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/weifield-group-contr"
+  },
+  {
+    "rank": 6,
+    "companyName": "Extraction Oil & Gas",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/extraction-oil-gas"
+  },
+  {
+    "rank": 7,
+    "companyName": "Team Select Home Care",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/team-select-home-care"
+  },
+  {
+    "rank": 8,
+    "companyName": "Echelon Property Group",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/echelon-property-group"
+  },
+  {
+    "rank": 9,
+    "companyName": "Academy Mortgage",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/academy-mortgage_1"
+  },
+  {
+    "rank": 10,
+    "companyName": "Cornerstone Home Lending",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/cornerstone-mortgage"
+  },
+  {
+    "rank": 11,
+    "companyName": "Physician Health Partners",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/physician-health-par"
+  },
+  {
+    "rank": 12,
+    "companyName": "Ping Identity Corp",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/ping-identity-corp"
+  },
+  {
+    "rank": 13,
+    "companyName": "Renewal by Andersen of Colorado",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/renewal-by-andersen-colo"
+  },
+  {
+    "rank": 14,
+    "companyName": "Personal Capital",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/personal-capital"
+  },
+  {
+    "rank": 15,
+    "companyName": "Citywide Home Loans",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/citywide-home-loans"
+  },
+  {
+    "rank": 16,
+    "companyName": "Universal Lending Home Loans",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/universal-lending-home-l"
+  },
+  {
+    "rank": 17,
+    "companyName": "First American Title Insurance Company",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/first-american-financial"
+  },
+  {
+    "rank": 18,
+    "companyName": "Slalom",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/slalom-consulting_3"
+  },
+  {
+    "rank": 19,
+    "companyName": "RingCentral",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/ringcentral"
+  },
+  {
+    "rank": 20,
+    "companyName": "ICAT",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/icat"
+  },
+  {
+    "rank": 21,
+    "companyName": "Safelite Autoglass",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/safelite-autoglass"
+  },
+  {
+    "rank": 22,
+    "companyName": "Stadium Medical",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/stadium-medical"
+  },
+  {
+    "rank": 23,
+    "companyName": "Burns & McDonnell",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/burns-mcdonnell_2"
+  },
+  {
+    "rank": 24,
+    "companyName": "2U, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/2u-inc"
+  },
+  {
+    "rank": 25,
+    "companyName": "Haselden Construction",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/haselden-construction"
+  },
+  {
+    "rank": 26,
+    "companyName": "CoreSite Realty Corp",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/coresite-realty-corp"
+  },
+  {
+    "rank": 27,
+    "companyName": "Encompass Home Health and Hospice",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/encompass-home-healt_1"
+  },
+  {
+    "rank": 28,
+    "companyName": "Suncrest Hospice",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/suncrest-hospice"
+  },
+  {
+    "rank": 29,
+    "companyName": "LONG Building Technologies",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/long-building-technologi"
+  },
+  {
+    "rank": 30,
+    "companyName": "SEMA Construction, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/sema-construction-inc"
+  },
+  {
+    "rank": 31,
+    "companyName": "Aspen Snowmass Sotheby's International",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/aspen-snowmass-sotheby-s"
+  },
+  {
+    "rank": 32,
+    "companyName": "Mortenson Construction",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/mortenson-construction_1"
+  },
+  {
+    "rank": 33,
+    "companyName": "Adolfson & Peterson Construction",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/adolfson-peterson-cons"
+  },
+  {
+    "rank": 34,
+    "companyName": "New York Life Insurance Company",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/new-york-life-insurance_1"
+  },
+  {
+    "rank": 35,
+    "companyName": "Gogo Business Aviation",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/gogo-business-aviation"
+  },
+  {
+    "rank": 36,
+    "companyName": "Aimco",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/apartment-investment-and_1"
+  },
+  {
+    "rank": 37,
+    "companyName": "Ibotta, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/ibotta-inc"
+  },
+  {
+    "rank": 38,
+    "companyName": "Lohmiller & Company dba Carrier West",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/lohmiller-company"
+  },
+  {
+    "rank": 39,
+    "companyName": "Shaw Construction",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/shaw-construction"
+  },
+  {
+    "rank": 40,
+    "companyName": "Tallgrass Energy",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/tallgrass-energy"
+  },
+  {
+    "rank": 41,
+    "companyName": "American Financing",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/american-financing"
+  },
+  {
+    "rank": 42,
+    "companyName": "SpotX",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/spotxchange"
+  },
+  {
+    "rank": 43,
+    "companyName": "LPR Construction Co",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/lpr-construction-co"
+  },
+  {
+    "rank": 44,
+    "companyName": "Halcyon Hospice & Palliative Care",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/halcyon-hospice-pallia"
+  },
+  {
+    "rank": 45,
+    "companyName": "Heating & Plumbing Engineers, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/heating-plumbing-engin"
+  },
+  {
+    "rank": 46,
+    "companyName": "Coalfire Systems, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/coalfire-systems-inc"
+  },
+  {
+    "rank": 47,
+    "companyName": "Mortgage Cadence, an Accenture Company",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/mortgage-cadence-an-acc"
+  },
+  {
+    "rank": 48,
+    "companyName": "Kentwood Real Estate",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/kentwood-real-estate"
+  },
+  {
+    "rank": 49,
+    "companyName": "Wiland, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/wiland-direct"
+  },
+  {
+    "rank": 50,
+    "companyName": "Inspirato, LLC",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/inspirato-llc"
+  }
+			]
+		},
+
+		template = $('#midsizeCompanies').html(),
+
+	    output = Mustache.render(template, midsizeCompanies);
+
+	  	$('#midsize-companies').append(output);
+	})();
+	
+	// SMALL COMPANIES JSON
+	(function() {
+		var smallCompanies = {
+			"companies": [
+				{
+    "rank": 1,
+    "companyName": "Zoom Video Communications",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/zoom-video-communication"
+  },
+  {
+    "rank": 2,
+    "companyName": "Choozle",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/choozle"
+  },
+  {
+    "rank": 3,
+    "companyName": "Power Home Remodeling Group",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/power-home-remodeling-gr_2"
+  },
+  {
+    "rank": 4,
+    "companyName": "Home Mortgage Alliance, LLC",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/home-mortgage-alliance"
+  },
+  {
+    "rank": 5,
+    "companyName": "Velocity Global, LLC.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/velocity-global-llc"
+  },
+  {
+    "rank": 6,
+    "companyName": "Downtown Denver Expeditionary School",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/downtown-denver-expediti"
+  },
+  {
+    "rank": 7,
+    "companyName": "Live Urban Real Estate",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/live-urban-real-estate"
+  },
+  {
+    "rank": 8,
+    "companyName": "Supreme Lending",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/supreme-lending"
+  },
+  {
+    "rank": 9,
+    "companyName": "MassMutual Colorado",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/massmutual-colorado"
+  },
+  {
+    "rank": 10,
+    "companyName": "Visiting Angels of Littleton",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/visiting-angels-of-l"
+  },
+  {
+    "rank": 11,
+    "companyName": "Done Plumbing & Heating",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/done-plumbing-heating"
+  },
+  {
+    "rank": 12,
+    "companyName": "Cain Travel Group, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/cain-travel-group-inc"
+  },
+  {
+    "rank": 13,
+    "companyName": "Ave Maria Catholic School",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/ave-maria-catholic-s"
+  },
+  {
+    "rank": 14,
+    "companyName": "Sparkplug Capital LLC (Red Dot Storage)",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/sparkplug-capital-llc-r"
+  },
+  {
+    "rank": 15,
+    "companyName": "GoSpotCheck",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/gospotcheck"
+  },
+  {
+    "rank": 16,
+    "companyName": "Visiting Angels of Denver",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/visiting-angels-of-lakew"
+  },
+  {
+    "rank": 17,
+    "companyName": "Zen Planner",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/zen-planner"
+  },
+  {
+    "rank": 18,
+    "companyName": "Larson Tax Relief",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/larson-financial-in"
+  },
+  {
+    "rank": 19,
+    "companyName": "Muller Engineering Company, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/muller-engineering"
+  },
+  {
+    "rank": 20,
+    "companyName": "Vivax Pros",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/vivax-pros"
+  },
+  {
+    "rank": 21,
+    "companyName": "Visiting Angels of Westminster",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/visiting-angels-of-westm"
+  },
+  {
+    "rank": 22,
+    "companyName": "Native Rank, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/native-rank-inc"
+  },
+  {
+    "rank": 23,
+    "companyName": "Applewood Plumbing Heating & Electric",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/applewood-plumbing-h"
+  },
+  {
+    "rank": 24,
+    "companyName": "Brothers Plumbing, Heating and Electric",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/brothers-plumbing-heati"
+  },
+  {
+    "rank": 25,
+    "companyName": "Donor Alliance Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/donor-alliance-inc"
+  },
+  {
+    "rank": 26,
+    "companyName": "Pax8",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/pax8"
+  },
+  {
+    "rank": 27,
+    "companyName": "MGA Home Healthcare",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/mga-home-healthcare"
+  },
+  {
+    "rank": 28,
+    "companyName": "Restaurant Solutions",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/restaurant-solutions"
+  },
+  {
+    "rank": 29,
+    "companyName": "EnergyLogic",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/energylogic"
+  },
+  {
+    "rank": 30,
+    "companyName": "VictorOps",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/victorops"
+  },
+  {
+    "rank": 31,
+    "companyName": "Short Elliott Hendrickson, Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/short-elliott-hendrickso"
+  },
+  {
+    "rank": 32,
+    "companyName": "Organa Brands",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/organa-brands"
+  },
+  {
+    "rank": 33,
+    "companyName": "TRI Pointe Homes",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/tri-pointe-homes"
+  },
+  {
+    "rank": 34,
+    "companyName": "Tendril",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/tendril"
+  },
+  {
+    "rank": 35,
+    "companyName": "Swinerton Builders",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/swinerton-builders"
+  },
+  {
+    "rank": 36,
+    "companyName": "Enerplus Resources (USA) Corporation",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/enerplus-resources-usa"
+  },
+  {
+    "rank": 37,
+    "companyName": "Point B Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/point-b-inc"
+  },
+  {
+    "rank": 38,
+    "companyName": "CCIG",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/cherry-creek-insurance-g"
+  },
+  {
+    "rank": 39,
+    "companyName": "Spyderco, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/spyderco-inc"
+  },
+  {
+    "rank": 40,
+    "companyName": "Denver Academy",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/denver-academy-inc"
+  },
+  {
+    "rank": 41,
+    "companyName": "Hagerty",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/hagerty"
+  },
+  {
+    "rank": 42,
+    "companyName": "Galloway & Company, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/galloway-company-inc"
+  },
+  {
+    "rank": 43,
+    "companyName": "NOVA® Home Loans",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/nova-home-loans"
+  },
+  {
+    "rank": 44,
+    "companyName": "TallGrass Aveda Spa & Salon",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/tallgrass-aveda-spa-sa"
+  },
+  {
+    "rank": 45,
+    "companyName": "JackRabbit",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/jackrabbit"
+  },
+  {
+    "rank": 46,
+    "companyName": "Drury Hotels",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/drury-hotels"
+  },
+  {
+    "rank": 47,
+    "companyName": "Turner Construction Company",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/turner-construction-comp_4"
+  },
+  {
+    "rank": 48,
+    "companyName": "RevGen Partners",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/revgen-partners"
+  },
+  {
+    "rank": 49,
+    "companyName": "Fransen Pittman General Contractors",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/fransen-pittman-general"
+  },
+  {
+    "rank": 50,
+    "companyName": "Guaranteed Rate",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/guaranteed-rate"
+  },
+  {
+    "rank": 51,
+    "companyName": "Chuze Fitness",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/chuze-fitness"
+  },
+  {
+    "rank": 52,
+    "companyName": "Xactly Corporation",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/xactly-cor"
+  },
+  {
+    "rank": 53,
+    "companyName": "Pinyon Environmental, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/pinyon-environmental"
+  },
+  {
+    "rank": 54,
+    "companyName": "Clinic Service Corporation",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/clinic-service-corporati"
+  },
+  {
+    "rank": 55,
+    "companyName": "Bradsby Group",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/bradsby-group"
+  },
+  {
+    "rank": 56,
+    "companyName": "Griffis Residential",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/griffis-residential"
+  },
+  {
+    "rank": 57,
+    "companyName": "Moye White, LLP",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/moye-white-llp"
+  },
+  {
+    "rank": 58,
+    "companyName": "Aerotek",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/aerotek_3"
+  },
+  {
+    "rank": 59,
+    "companyName": "Baron Education",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/baron-education"
+  },
+  {
+    "rank": 60,
+    "companyName": "Greystone Technology Group, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/greystone-technology-gro"
+  },
+  {
+    "rank": 61,
+    "companyName": "BG Buildingworks, Inc.",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/bg-buildingworks-inc"
+  },
+  {
+    "rank": 62,
+    "companyName": "American Family Care Urgent Care Denver",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/american-family-care-urg"
+  },
+  {
+    "rank": 63,
+    "companyName": "Rod Martin's Complete Basement Systems",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/rod-martin-s-complete-ba"
+  },
+  {
+    "rank": 64,
+    "companyName": "Cornerstone Apartment Services Inc",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/cornerstone-apartment-se"
+  },
+  {
+    "rank": 65,
+    "companyName": "City of Centennial",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/city-of-centennial"
+  },
+  {
+    "rank": 66,
+    "companyName": "AAA Service Plumbing, Heating & Electric",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/aaa-service-plumbing-he"
+  },
+  {
+    "rank": 67,
+    "companyName": "Rocky Mountain Prep",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/rocky-mountain-prep"
+  },
+  {
+    "rank": 68,
+    "companyName": "TIBCO",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/tibco"
+  },
+  {
+    "rank": 69,
+    "companyName": "Match Marketing Group",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/match-marketing-group"
+  },
+  {
+    "rank": 70,
+    "companyName": "Monigle",
+    "website": "http://www.topworkplaces.com/frontend.php/regional-list/company/denverpost/monigle"
+  }
+			]
+		}
+		
+		template = $('#smallCompanies').html(),
+
+	    output = Mustache.render(template, smallCompanies);
+
+	  	$('#small-companies').append(output);
+	})();
+	
+	// WORKPLACE ACHIEVERS JSON
+	// (function() {
+	// 	var workplaceAchievers = {
+	// 		"companies": [
+	// 			{}
+	// 		]
+	// 	}
+		
+	// 	template = $('#workplaceAchievers').html(),
+
+	//     output = Mustache.render(template, workplaceAchievers);
+
+	//   	$('#workplace-achievers').append(output);
+	// })();
+	</script>
+</body> 
+</html>
